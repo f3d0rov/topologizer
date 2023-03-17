@@ -1,0 +1,104 @@
+
+#header {
+	width: 100%;
+	
+	padding: 2px;
+	
+	border: solid;
+	border-color: black;
+	border-width: 1px;
+	
+	font-size: 20px;
+	font-family: 'Comfortaa', cursive;
+}
+
+#alley {
+	font-size: 20px;
+	font-family: 'Comfortaa', cursive;
+}
+
+#placePrefix {
+	font-size: 20px;
+	font-family: 'Comfortaa', cursive;
+}
+
+#generate {
+	font-size: 20px;
+	font-family: 'Comfortaa', cursive;
+}
+
+#side {
+	font-size: 20px;
+	font-family: 'Comfortaa', cursive;
+	
+	height: 30px;
+	line-height: 30px;
+	-webkit-appearance: menulist-button;  
+	-moz-appearance:none;
+}
+
+.barcodeImgs {
+	position: relative;
+	left: 10%;
+	width: 80%;
+	margin: auto;
+}
+
+.barcodeBox {
+	width: 15%;
+	display: inline-block;
+	
+	border: solid;
+	border-color: black;
+	border-width: 4px;
+	
+	margin: 5px;
+}
+
+.barcodeLabel {
+	font-size: 15;
+	font-family: 'Comfortaa', cursive;
+	text-align: center;
+}
+
+.topoBox {
+	font-family:  'Saira Extra Condensed', sans-serif;
+	text-align: left;
+	width: 210px;
+	
+	border: solid;
+	border-width: 1px;
+	display: inline-block;
+	
+	margin: 0px;
+	padding: 0px;
+	
+	overflow-x: hidden;
+}
+
+.topoBoxText {
+	font-size: 32px;
+}
+
+.topoBoxSmallText {
+	font-size: 20px;
+}
+
+.topoBoxValue {
+	font-size: 64px;
+	line-height: 20px;
+	vertical-align: top;
+	text-align: center;
+}
+
+.placeBarcode {
+	padding-left: 30px;
+	padding-right: 0px;
+	
+	height: 280px;
+	width: 150px;
+}
+
+.topoArrow {
+	padding-left: 15px;
+}
