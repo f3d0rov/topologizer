@@ -9,56 +9,34 @@
 	border-width: 1px;
 	
 	font-size: 20px;
-	font-family: 'Comfortaa', cursive;
+	font-family:  'Saira Extra Condensed', sans-serif;
 }
 
 #alley {
-	font-size: 20px;
-	font-family: 'Comfortaa', cursive;
+	font-size: 32px;
+	height: 34px;
+	font-family:  'Saira Extra Condensed', sans-serif;
 }
 
 #placePrefix {
-	font-size: 20px;
-	font-family: 'Comfortaa', cursive;
+	font-size: 32px;
+	height: 34px;
+	font-family:  'Saira Extra Condensed', sans-serif;
 }
 
 #generate {
 	font-size: 20px;
-	font-family: 'Comfortaa', cursive;
+	font-family:  'Saira Extra Condensed', sans-serif;
 }
 
 #side {
 	font-size: 20px;
 	font-family: 'Comfortaa', cursive;
 	
-	height: 30px;
-	line-height: 30px;
+	height: 34px;
+	line-height: 34px;
 	-webkit-appearance: menulist-button;  
 	-moz-appearance:none;
-}
-
-.barcodeImgs {
-	position: relative;
-	left: 10%;
-	width: 80%;
-	margin: auto;
-}
-
-.barcodeBox {
-	width: 15%;
-	display: inline-block;
-	
-	border: solid;
-	border-color: black;
-	border-width: 4px;
-	
-	margin: 5px;
-}
-
-.barcodeLabel {
-	font-size: 15;
-	font-family: 'Comfortaa', cursive;
-	text-align: center;
 }
 
 .topoBox {
