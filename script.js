@@ -1,6 +1,6 @@
 
 function placeCode(prefix, alley, line) {
-	return prefix.toString() + alley.toString().padStart(2, '0') + line.toString().padStart(2, '0') + "01";
+	return prefix.toString() + alley.toString().padStart(2, '0') + line.toString().padStart(3, '0') + "01";
 }
 
 function getAlley() {
