@@ -1,30 +1,29 @@
 
 #header {
-	width: 100%;
+	position: absolute;
+	display: inline-block;
 	
-	padding: 2px;
+	width: fit-content;
+	left: 5%;
+	top: 5%;
 	
 	border: solid;
-	border-color: black;
+	border-color: grey;
 	border-width: 1px;
 	
 	font-size: 20px;
 	font-family:  'Saira Extra Condensed', sans-serif;
+	
+	box-shadow: 0px 5px 7px grey;
 }
 
-#alley {
+.headerInput {
 	font-size: 32px;
 	height: 34px;
 	font-family:  'Saira Extra Condensed', sans-serif;
 }
 
-#placePrefix {
-	font-size: 32px;
-	height: 34px;
-	font-family:  'Saira Extra Condensed', sans-serif;
-}
-
-#generate {
+button {
 	font-size: 20px;
 	font-family:  'Saira Extra Condensed', sans-serif;
 }
