@@ -12,14 +12,40 @@
 	</head>
 	<body>
 		<div id = "header"> 
-			Аллея: <input id = "alley" size = "2" value="3"> </input>
-			<select id = "side">
-				<option value = 'L'>L</option>
-				<option value = 'R'>R</option>
-			</select>
-			Префикс кода места: <input id = "placePrefix" size = "2" value = "56"> </input>
-			
-			<button id = "generate"> Создать </button>
+			<table>
+				<tr>
+					<td> Аллея: </td>
+					<td>
+						<input id = "alley" size = "2" value="3" class = "headerInput"> </input>
+						<select id = "side">
+							<option value = 'L'>L</option>
+							<option value = 'R'>R</option>
+						</select>
+					</td>
+					
+					<td> </td>
+					
+					<td> Длина аллеи: </td>
+					<td> <input id = "alleyLength" size = "3" value = "160" class = "headerInput"> </td>
+					
+				</tr>
+				
+				<tr>
+					<td> Префикс кода места: </td>
+					<td> <input id = "placePrefix" size = "2" value = "56" class = "headerInput"> </input> </td>
+				</tr>
+				
+				<tr>
+					<td> </td>
+					<td> </td>
+					<td>
+						<button id = "generate"> Создать </button>
+					</td>
+					<td> </td>
+				</tr>
+				
+			</table>
+			 
 		</div>
 		<div id = "barcodes">
 		</div>
