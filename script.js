@@ -21,6 +21,11 @@ function getPlacePrefix() {
 	return parseInt(prefix.value);
 }
 
+function getAlleyLength() {
+	let len = document.getElementById('alleyLength');
+	return parseInt(len.value);
+}
+
 function createLabel(alley, place) {
 	let lab = document.createElement('div');
 	lab.classList.add('barcodeLabel');
@@ -41,7 +46,7 @@ function createBarcodeBox(bc, alley, place) {
 
 function generateAlleyBarcodes(_ev) {
 	alley = getAlley();
-	last = 160;
+	last = getAlleyLength();
 	even = getParity();
 	prefix = getPlacePrefix();
 	let container = document.getElementById('barcodes');
@@ -65,6 +70,9 @@ function generateAlleyBarcodes(_ev) {
 		
 		document.getElementById(code).appendChild(newBarcode);
 	}
+	
+	document.getElementById('header').style.display = 'none';
+	
 }
 
 function createFromTemplate(barcodeId, alley, place) {
