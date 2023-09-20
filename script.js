@@ -1,6 +1,6 @@
 
-function placeCode(prefix, alley, line) {
-	return prefix.toString() + alley.toString().padStart(2, '0') + line.toString().padStart(3, '0') + "01";
+function placeCode(prefix, alley, line, level) {
+	return prefix.toString() + alley.toString().padStart(2, '0') + line.toString().padStart(3, '0') + level.toString().padStart(2, '0');
 }
 
 function getAlley() {
@@ -26,22 +26,42 @@ function getAlleyLength() {
 	return parseInt(len.value);
 }
 
-function createLabel(alley, place) {
+function getAlleyType() {
+	let selector = document.getElementById('typeSelector');
+	return selector.value;
+}
+
+function createLabel(alley, place, level) {
 	let lab = document.createElement('div');
 	lab.classList.add('barcodeLabel');
-	lab.textContent = alley.toString().padStart(2, '0') + "-" + place.toString().padStart(2, '0');
+	lab.textContent = alley.toString().padStart(2, '0') + "-" + place.toString().padStart(2, '0') + "-" + level.toString().padStart('0');
 	return lab;
 }
 
-function createBarcodeBox(bc, alley, place) {
+function createBarcodeBox(bc, alley, place, level) {
 	let bcBox = document.createElement('div');
 	bcBox.classList.add('barcodeBox');
 	
-	let lab = createLabel(alley, place);
+	let lab = createLabel(alley, place, level);
 	
 	bcBox.appendChild(bc);
 	bcBox.appendChild(lab);
 	return bcBox;
+}
+
+function generateBarcode(code) {
+	let newBarcode = document.createElement('canvas');
+	newBarcode.classList.add("placeBarcode");
+	let newBarcodeRet = bwipjs.toCanvas(newBarcode, {
+		bcid:        'code128',       // Barcode type
+		text:        code,    		// Text to encode
+		scale:       3,               // 3x scaling factor
+		rotate:		'L',
+		height:      10,              // Bar height, in millimeters
+		includetext: false,            // Show human-readable text
+		textxalign:  'center',        // Always good to set this
+	});
+	return newBarcode;
 }
 
 function generateAlleyBarcodes(_ev) {
@@ -49,33 +69,33 @@ function generateAlleyBarcodes(_ev) {
 	last = getAlleyLength();
 	even = getParity();
 	prefix = getPlacePrefix();
+
+	let alleyType = getAlleyType();
+	let possibleLevels = {
+		"alley": [ 01 ],
+		"rack":  [ 01, 10, 20, 30, 40, 50 ],
+		"rack02":[ 01, 02, 10, 20, 30, 40, 50]
+	}
+
+	let levelSet = possibleLevels[alleyType];
+
 	let container = document.getElementById('barcodes');
 	container.textContent = '';
 	for (let i = even ? 2 : 1; i <= last; i += 2) {
-		let code = placeCode(prefix, alley, i);
-		console.log('"' + code + '"');
-		container.appendChild(createTopologyBox(code, alley, i));
-		
-		let newBarcode = document.createElement('canvas');
-		newBarcode.classList.add("placeBarcode");
-		let newBarcodeRet = bwipjs.toCanvas(newBarcode, {
-			bcid:        'code128',       // Barcode type
-			text:        code,    		// Text to encode
-			scale:       3,               // 3x scaling factor
-			rotate:		'L',
-			height:      10,              // Bar height, in millimeters
-			includetext: false,            // Show human-readable text
-			textxalign:  'center',        // Always good to set this
-		});
-		
-		document.getElementById(code).appendChild(newBarcode);
+		for (let j = 0; j < levelSet.length; j++) {
+			lev = levelSet[j];
+			let code = placeCode(prefix, alley, i, lev);
+			console.log('"' + code + '"');
+			container.appendChild(createTopologyBox(code, alley, i, lev));
+			document.getElementById(code).appendChild(generateBarcode(code));
+		}
 	}
 	
 	document.getElementById('header').style.display = 'none';
 	
 }
 
-function createFromTemplate(barcodeId, alley, place) {
+function createFromTemplate(barcodeId, alley, place, level) {
 	let template = "<div class = \"topoBox\">\
 		<table>\
 			<tr>\
@@ -96,7 +116,7 @@ function createFromTemplate(barcodeId, alley, place) {
 				<td class = \"topoBoxText\"> level </td>\
 			</tr>\
 			<tr>\
-				<td class = \"topoBoxValue\"> 01 </td>\
+				<td class = \"topoBoxValue\"> {LEVEL} </td>\
 			</tr>\
 			<tr> \
 				<td colspan = \"2\" class = \"topoBoxSmallText\"> CloudWMS(R) www.cowms.ru </td>\
@@ -117,16 +137,14 @@ function createFromTemplate(barcodeId, alley, place) {
 	template = template.replace('{PLACE}', place.toString().padStart(3, '0'));
 	template = template.replace('{ALLEY}', alley.toString().padStart(2, '0'));
 	template = template.replace('{BARCODEID}', barcodeId);
-	
+	template = template.replace('{LEVEL}', level.toString().padStart(2, '0'));
 	return template;
 }
 
-function createTopologyBox(bc, alley, place) {
+function createTopologyBox(bc, alley, place, level) {
 	let template = document.createElement('template');
-	template.innerHTML = createFromTemplate(bc, alley, place);
+	template.innerHTML = createFromTemplate(bc, alley, place, level);
 	let barcodeElem = document.getElementById(bc);
-	
-		
 	return template.content.firstChild;
 }
 
