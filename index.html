@@ -57,6 +57,59 @@
 			 
 		</div>
 		<div id = "barcodes">
+			<div id = "topoBoxTemplate" class = "topoBox template"> 
+				<table>
+					<tr>
+						<td class = "topoBoxText"> line </td>
+						<td class = "topoBoxText" colspan="2"> LogistERA </td>
+					</tr>
+					<tr>
+						<td class = "topoBoxValue alleyId"> {ALLEY} </td>
+						<td rowspan = "5" > 
+							<svg version="1.1"
+								baseProfile="full"
+								width="30px" height="180px"
+								xmlns="http://www.w3.org/2000/svg">
+								<path d = "{POINTER2}" fill = "black" stroke="black" class = "verticalTopoArrow"/>	
+							</svg>
+						</td>
+						<td rowspan = "5" id = "barcodeid"> </td>
+					</tr>
+					<tr>
+						<td class = "topoBoxText"> place </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					<tr>
+						<td class = "topoBoxValue placeId"> {PLACE} </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					<tr>
+						<td class = "topoBoxText"> level </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					<tr>
+						<td class = "topoBoxValue levelId"> {LEVEL} </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+					<tr> 
+						<td colspan = "3" class = "topoBoxSmallText"> CloudWMS(R) www.cowms.ru </td>
+					</tr>
+					<tr>
+						<td colspan = "3" class = "topoArrow">
+							<svg version="1.1"
+								baseProfile="full"
+								width="180px" height="40px"
+								xmlns="http://www.w3.org/2000/svg">
+								<path d = "{POINTER}" fill = "black" stroke="black" class = "horizontalTopoArrow"/>	
+							</svg>
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</body>
 </html>
