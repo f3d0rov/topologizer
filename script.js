@@ -74,7 +74,7 @@ function generateAlleyBarcodes(_ev) {
 	let possibleLevels = {
 		"alley": [ 01 ],
 		"rack":  [ 01, 10, 20, 30, 40, 50 ],
-		"rack02":[ 01, 02, 10, 20, 30, 40, 50]
+		"rack02":[ 01, 02, 10, 20, 30, 40, 50 ]
 	}
 
 	let levelSet = possibleLevels[alleyType];
@@ -86,7 +86,7 @@ function generateAlleyBarcodes(_ev) {
 			lev = levelSet[j];
 			let code = placeCode(prefix, alley, i, lev);
 			console.log('"' + code + '"');
-			container.appendChild(createTopologyBox(code, alley, i, lev));
+			container.appendChild(createTopologyBox(code, alley, i, lev, !(alleyType == "alley")));
 			document.getElementById(code).appendChild(generateBarcode(code));
 		}
 	}
@@ -95,7 +95,7 @@ function generateAlleyBarcodes(_ev) {
 	
 }
 
-function createFromTemplate(barcodeId, alley, place, level) {
+function createFromTemplate(barcodeId, alley, place, level, upDownPointer) {
 	let template = "<div class = \"topoBox\">\
 		<table>\
 			<tr>\
@@ -127,24 +127,37 @@ function createFromTemplate(barcodeId, alley, place, level) {
 						baseProfile=\"full\"\
 						width=\"180px\" height=\"40px\"\
 						xmlns=\"http://www.w3.org/2000/svg\">\
-						<path d = \"M 0 10 L 165 10 L 165 0 L 180 20 L 165 40 L 165 30 L 0 30\" fill = \"black\" stroke=\"black\"/>	\
+						<path d = \"{POINTER}\" fill = \"black\" stroke=\"black\"/>	\
 					</svg>\
 				</td>\
 			</tr>\
 		</table>\
 	</div>";
-	
+	// 
+	// 
+	// "M 15 35 L 55 35 L 35 0 M 65 35 L 105 35 L 85 0 M 115 35 L 155 35 L 135 0\" fill = \"black\" stroke=\"black"
+
+	let pointer = "M 0 10 L 165 10 L 165 0 L 180 20 L 165 40 L 165 30 L 0 30";
+	if (upDownPointer) {
+		if (level < 10) {
+			pointer = "M 15 0 L 55 0 L 35 35 M 65 0 L 105 0 L 85 35 M 115 0 L 155 0 L 135 35";
+		} else {
+			pointer = "M 15 35 L 55 35 L 35 0 M 65 35 L 105 35 L 85 0 M 115 35 L 155 35 L 135 0";
+		}
+	}
+
 	template = template.replace('{PLACE}', place.toString().padStart(3, '0'));
 	template = template.replace('{ALLEY}', alley.toString().padStart(2, '0'));
 	template = template.replace('{BARCODEID}', barcodeId);
 	template = template.replace('{LEVEL}', level.toString().padStart(2, '0'));
+	template = template.replace('{POINTER}', pointer);
 	return template;
 }
 
-function createTopologyBox(bc, alley, place, level) {
+function createTopologyBox(bc, alley, place, level, upDownPointer) {
 	let template = document.createElement('template');
-	template.innerHTML = createFromTemplate(bc, alley, place, level);
-	let barcodeElem = document.getElementById(bc);
+	template.innerHTML = createFromTemplate(bc, alley, place, level, upDownPointer);
+	// let barcodeElem = document.getElementById(bc);
 	return template.content.firstChild;
 }
 
