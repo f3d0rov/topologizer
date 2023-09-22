@@ -100,29 +100,45 @@ function createFromTemplate(barcodeId, alley, place, level, upDownPointer) {
 		<table>\
 			<tr>\
 				<td class = \"topoBoxText\"> line </td>\
-				<td class = \"topoBoxText\"> LogistERA </td>\
+				<td class = \"topoBoxText\" colspan=\"2\"> LogistERA </td>\
 			</tr>\
 			<tr>\
 				<td class = \"topoBoxValue\"> {ALLEY} </td>\
+				<td rowspan = \"5\" > \
+					<svg version=\"1.1\"\
+						baseProfile=\"full\"\
+						width=\"30px\" height=\"180px\"\
+						xmlns=\"http://www.w3.org/2000/svg\">\
+						<path d = \"{POINTER2}\" fill = \"black\" stroke=\"black\"/>	\
+					</svg>\
+				</td>\
 				<td rowspan = \"5\" id = \"{BARCODEID}\"> </td>\
 			</tr>\
 			<tr>\
 				<td class = \"topoBoxText\"> place </td>\
+				<td> </td>\
+				<td> </td>\
 			</tr>\
 			<tr>\
 				<td class = \"topoBoxValue\"> {PLACE} </td>\
+				<td> </td>\
+				<td> </td>\
 			</tr>\
 			<tr>\
 				<td class = \"topoBoxText\"> level </td>\
+				<td> </td>\
+				<td> </td>\
 			</tr>\
 			<tr>\
 				<td class = \"topoBoxValue\"> {LEVEL} </td>\
+				<td> </td>\
+				<td> </td>\
 			</tr>\
 			<tr> \
-				<td colspan = \"2\" class = \"topoBoxSmallText\"> CloudWMS(R) www.cowms.ru </td>\
+				<td colspan = \"3\" class = \"topoBoxSmallText\"> CloudWMS(R) www.cowms.ru </td>\
 			</tr>\
 			<tr>\
-				<td colspan = \"2\" class = \"topoArrow\">\
+				<td colspan = \"3\" class = \"topoArrow\">\
 					<svg version=\"1.1\"\
 						baseProfile=\"full\"\
 						width=\"180px\" height=\"40px\"\
@@ -138,11 +154,15 @@ function createFromTemplate(barcodeId, alley, place, level, upDownPointer) {
 	// "M 15 35 L 55 35 L 35 0 M 65 35 L 105 35 L 85 0 M 115 35 L 155 35 L 135 0\" fill = \"black\" stroke=\"black"
 
 	let pointer = "M 0 10 L 165 10 L 165 0 L 180 20 L 165 40 L 165 30 L 0 30";
+	let pointer2 = "";
+
 	if (upDownPointer) {
 		if (level < 10) {
-			pointer = "M 15 0 L 55 0 L 35 35 M 65 0 L 105 0 L 85 35 M 115 0 L 155 0 L 135 35";
+			pointer = ""; //"M 15 0 L 55 0 L 35 35 M 65 0 L 105 0 L 85 35 M 115 0 L 155 0 L 135 35";
+			pointer2 = "M 10 0 L 10 160 L 0 160 L 15 180 L 30 160 L 20 160 L 20 0";
 		} else {
-			pointer = "M 15 35 L 55 35 L 35 0 M 65 35 L 105 35 L 85 0 M 115 35 L 155 35 L 135 0";
+			pointer = ""; //"M 15 35 L 55 35 L 35 0 M 65 35 L 105 35 L 85 0 M 115 35 L 155 35 L 135 0";
+			pointer2 = "M 10 180 L 10 20 L 0 20 L 15 0 L 30 20 L 20 20 L 20 180";
 		}
 	}
 
@@ -151,6 +171,7 @@ function createFromTemplate(barcodeId, alley, place, level, upDownPointer) {
 	template = template.replace('{BARCODEID}', barcodeId);
 	template = template.replace('{LEVEL}', level.toString().padStart(2, '0'));
 	template = template.replace('{POINTER}', pointer);
+	template = template.replace('{POINTER2}', pointer2);
 	return template;
 }
 
