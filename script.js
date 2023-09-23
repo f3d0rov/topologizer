@@ -1,34 +1,43 @@
 
+// Сформировать код места для заданных параметров
 function placeCode (prefix, alley, line, level) {
+	// Префикс - 2 символа аллеи - 3 символа места - 2 символа уровня
 	return prefix.toString() + alley.toString().padStart (2, '0') + line.toString().padStart (3, '0') + level.toString().padStart (2, '0');
 }
 
+// Получить целочисленное значение из тега <input>
 function getIntValue (id) {
 	return parseInt (document.getElementById (id).value);
 }
 
+// Получить номер аллеи из формы ввода
 function getAlley () {
 	return getIntValue ('alley');
 }
 
+// Получить сторону из формы ввода
 function getParity () {
 	let side = document.getElementById ('side');
 	return side.value == 'R';
 }
 
+// Получить префикс места из формы ввода
 function getPlacePrefix () {
 	return parseInt ('placePrefix');
 }
 
+// Получить длину аллеи из формы ввода
 function getAlleyLength () {
 	return getIntValue ('alleyLength');
 }
 
+// Получить тип аллеи из формы ввода
 function getAlleyType () {
 	let selector = document.getElementById ('typeSelector');
 	return selector.value;
 }
 
+// Сгенерировать элемент штрих-кода
 function generateBarcode (code) {
 	let newBarcode = document.createElement ('canvas');
 	newBarcode.classList.add ("placeBarcode");
@@ -49,6 +58,7 @@ function generateBarcode (code) {
 	return newBarcode;
 }
 
+// Сгенерировать топологию согласно данным формы ввода
 function generateAlleyBarcodes (_ev) {
 	let alley = getAlley();
 	let last = getAlleyLength();
@@ -76,6 +86,7 @@ function generateAlleyBarcodes (_ev) {
 	document.getElementById ('header').style.display = 'none';
 }
 
+// Сгенерировать отдельную этикетку топологии с заданными параметрами
 function createTopologyBox(barcodeId, alley, place, level, upDownPointer) {
 	let templateElem = document.getElementById ("topoBoxTemplate");
 	let template = templateElem.cloneNode (true);
@@ -113,10 +124,12 @@ function createTopologyBox(barcodeId, alley, place, level, upDownPointer) {
 	return template;
 }
 
+// Задать событие при нажатии кнопки
 function setupHooks (_ev) {
 	let but = document.getElementById ('generate');
 	but.addEventListener ("click", generateAlleyBarcodes);
 }
 
+// Задаем событие нажатия кнопки при загрузке окна
 window.addEventListener ('load', setupHooks);
 
