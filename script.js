@@ -83,7 +83,7 @@ function generateAlleyBarcodes (_ev) {
 		}
 	}
 	
-	document.getElementById ('header').style.display = 'none';
+	document.getElementById ('box').style.display = 'none'; 
 }
 
 // Сгенерировать отдельную этикетку топологии с заданными параметрами
