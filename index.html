@@ -11,50 +11,52 @@
 		<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<div id = "header"> 
-			<table>
-				<tr>
-					<td> Аллея: </td>
-					<td>
-						<input id = "alley" size = "2" value="3" class = "headerInput"> </input>
-						<select id = "side">
-							<option value = 'L'>L</option>
-							<option value = 'R'>R</option>
-						</select>
-					</td>
+		<div id = "box">
+			<div id = "header"> 
+				<table>
+					<tr>
+						<td> Аллея: </td>
+						<td>
+							<input id = "alley" size = "2" value="3" class = "headerInput"> </input>
+							<select id = "side">
+								<option value = 'L'>L</option>
+								<option value = 'R'>R</option>
+							</select>
+						</td>
+						
+						<td> </td>
+						
+						<td> Длина аллеи: </td>
+						<td> <input id = "alleyLength" size = "3" value = "160" class = "headerInput"> </td>
+						
+					</tr>
 					
-					<td> </td>
+					<tr>
+						<td> Код склада: </td>
+						<td> <input id = "placePrefix" size = "2" value = "56" class = "headerInput"> </input> </td>
+						<td> Тип аллеи: </td>
+						<td>
+							<select id = "typeSelector" class = "typeSelector">
+								<option value = "alley"> Стеки </option>
+								<option value = "rack"> Стеллаж </option>
+								<option value = "rack02"> Стеллаж с уровнем 02 </option>
+							</select>	
+						</td> 
+	
+					</tr>
 					
-					<td> Длина аллеи: </td>
-					<td> <input id = "alleyLength" size = "3" value = "160" class = "headerInput"> </td>
+					<tr>
+						<td> </td>
+						<td> </td>
+						<td>
+							<button id = "generate"> Создать </button>
+						</td>
+						<td> </td>
+					</tr>
 					
-				</tr>
-				
-				<tr>
-					<td> Код склада: </td>
-					<td> <input id = "placePrefix" size = "2" value = "56" class = "headerInput"> </input> </td>
-					<td> Тип аллеи: </td>
-					<td>
-						<select id = "typeSelector" class = "typeSelector">
-							<option value = "alley"> Стеки </option>
-							<option value = "rack"> Стеллаж </option>
-							<option value = "rack02"> Стеллаж с уровнем 02 </option>
-						</select>	
-					</td> 
-
-				</tr>
-				
-				<tr>
-					<td> </td>
-					<td> </td>
-					<td>
-						<button id = "generate"> Создать </button>
-					</td>
-					<td> </td>
-				</tr>
-				
-			</table>
-			 
+				</table>
+				 
+			</div>
 		</div>
 		<div id = "barcodes">
 			<div id = "topoBoxTemplate" class = "topoBox template"> 
