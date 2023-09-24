@@ -95,12 +95,13 @@ function createTopologyBox(barcodeId, alley, place, level, upDownPointer) {
 		right: 	"M 0 10 L 165 10 L 165 0 L 180 20 L 165 40 L 165 30 L 0 30",
 		up:  	"M 15 35 L 55 35 L 35 0 M 65 35 L 105 35 L 85 0 M 115 35 L 155 35 L 135 0",
 		down: 	"M 15 0 L 55 0 L 35 35 M 65 0 L 105 0 L 85 35 M 115 0 L 155 0 L 135 35",
-		none: 	""
+		none: 	"M 0 0"
 	};
 
 	const verticalPointers = {
 		down: 	"M 10 0 L 10 160 L 0 160 L 15 180 L 30 160 L 20 160 L 20 0",
 		up: 	"M 10 180 L 10 20 L 0 20 L 15 0 L 30 20 L 20 20 L 20 180",
+		none:	"M 0 0"
 	}
 
 	let horizontalPointer = horizontalPointers.right;
