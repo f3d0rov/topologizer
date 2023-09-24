@@ -1,20 +1,22 @@
 
+#box {
+	width: 95vw;
+	height: 95vh;
+}
+
 #header {
-	position: absolute;
-	display: inline-block;
+	position: relative;
+	display: block;
 	
 	width: fit-content;
-	left: 5%;
 	top: 5%;
-	
-	border: solid;
-	border-color: grey;
-	border-width: 1px;
 	
 	font-size: 20px;
 	font-family:  'Saira Extra Condensed', sans-serif;
 	
-	box-shadow: 0px 5px 7px grey;
+	box-shadow: 0px 5px 10px grey;
+	background-color: #FAFAFA;
+	margin: 0 auto;
 }
 
 .headerInput {
