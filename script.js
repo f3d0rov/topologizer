@@ -23,7 +23,7 @@ function getParity () {
 
 // Получить префикс места из формы ввода
 function getPlacePrefix () {
-	return parseInt ('placePrefix');
+	return getIntValue ('placePrefix');
 }
 
 // Получить длину аллеи из формы ввода
